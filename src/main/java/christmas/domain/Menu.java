@@ -16,8 +16,8 @@ public enum Menu {
     WINE("레드와인", 60000),
     CHAMPAGNE("샴페인", 25000);
 
-    private String name;
-    private int price;
+    private final String name;
+    private final int price;
 
     private Menu(final String name, final int price) {
         this.name = name;
@@ -31,7 +31,7 @@ public enum Menu {
                 .orElse(null);
     }
 
-    private String getName() {
+    public String getName() {
         return this.name;
     }
 }
