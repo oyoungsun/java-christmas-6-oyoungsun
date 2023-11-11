@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.constants.StringConstants;
 import christmas.utils.validators.OrderItemValidator;
 
 public class OrderItem {
@@ -17,4 +18,9 @@ public class OrderItem {
         return new OrderItem(menu, count);
     }
 
+    @Override
+    public String toString() {
+        return  menu.getName() + StringConstants.SPACE
+                + count + "개";
+    }
 }
