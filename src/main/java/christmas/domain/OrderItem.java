@@ -20,7 +20,16 @@ public class OrderItem {
 
     @Override
     public String toString() {
-        return  menu.getName() + StringConstants.SPACE
+        return menu.getName() + StringConstants.SPACE
                 + count + "개";
     }
+
+    public int getCount() {
+        return count;
+    }
+
+    public boolean isDrink() {
+        return MenuType.isDrink(menu);
+    }
+
 }
