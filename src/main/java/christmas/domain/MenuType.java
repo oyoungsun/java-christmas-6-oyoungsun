@@ -15,4 +15,8 @@ public enum MenuType {
         this.menuGroup = menuGroup;
     }
 
+    public static boolean isDrink(final Menu menu) {
+        return DRINK.menuGroup.stream().anyMatch(drink -> drink == menu);
+    }
+
 }
