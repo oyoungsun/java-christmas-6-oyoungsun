@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class DiscountService {
     private static final int MINIMUM_EVENT_PRICE = 10000;
+    private static final String NOTHING = "없음\n";
     private final Set<Discount> discounts;
     private final PayAmount payAmount;
     private final Date date;
@@ -48,4 +49,18 @@ public class DiscountService {
         return;
     }
 
+//    public int requestTotalDiscountAmount(){
+//        return discounts.stream().
+//                mapToInt(
+//                        discount -> discount.getDiscountAmount()
+//                ).sum();
+//    }
+
+    @Override
+    public String toString() {
+        if(discounts.size()!=0){
+            return NOTHING;
+        }
+        return discounts.stream().toString();
+    }
 }

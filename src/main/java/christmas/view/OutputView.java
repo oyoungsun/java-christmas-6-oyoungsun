@@ -2,6 +2,7 @@ package christmas.view;
 
 import christmas.domain.Benefit;
 import christmas.domain.dto.BenefitDto;
+import christmas.domain.dto.DiscountDto;
 import christmas.domain.dto.OrderOuputDto;
 import christmas.domain.dto.PayAmountDto;
 
@@ -9,6 +10,7 @@ public class OutputView {
     private static final String ORDER_MENU = "<주문 메뉴>";
     private static final String TOTAL_AMOUNT = "<할인 전 총주문 금액>";
     private static final String BENEFIT_MENU = "<증정 메뉴>";
+    private static final String DISCOUNT_MENU = "<혜택 내역>";
 
 
     public void printOrderMenu(OrderOuputDto orders){
@@ -23,6 +25,11 @@ public class OutputView {
     public void printBenefit(BenefitDto benefit){
         System.out.println(BENEFIT_MENU);
         System.out.println(benefit.getBenefit());
+    }
+
+    public void printDiscount(DiscountDto discount){
+        System.out.println(DISCOUNT_MENU);
+        System.out.println(discount.getTotalDiscount());
     }
 
 }
