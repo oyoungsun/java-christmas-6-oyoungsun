@@ -15,4 +15,7 @@ public class PayAmount {
         return fomatter.format(totalPayAmount);
     }
 
+    public boolean isMoreThan(final int other) {
+        return this.totalPayAmount >= other;
+    }
 }
