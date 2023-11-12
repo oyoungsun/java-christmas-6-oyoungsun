@@ -32,4 +32,7 @@ public class OrderItem {
         return MenuType.isDrink(menu);
     }
 
+    public int requestPrice() {
+        return menu.requestPrice(count);
+    }
 }

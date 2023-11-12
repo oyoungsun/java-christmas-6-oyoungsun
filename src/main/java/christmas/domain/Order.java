@@ -16,6 +16,10 @@ public class Order {
         return new Order(orderItems);
     }
 
+    public int requestTotalPrice(){
+        return orderItems.stream().mapToInt(item -> item.requestPrice()).sum();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -35,4 +35,7 @@ public enum Menu {
         return this.name;
     }
 
+    public int requestPrice(final int count) {
+        return this.price*count;
+    }
 }
