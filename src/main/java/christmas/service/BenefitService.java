@@ -9,15 +9,23 @@ public class BenefitService {
     private final PayAmount payAmount;
     private final Benefit benefit;
 
-    public BenefitService(final PayAmount payAmount) {
+    private BenefitService(final PayAmount payAmount) {
         this.payAmount = payAmount;
         boolean isGift = isGiftNeeded(payAmount);
         this.benefit = Benefit.from(isGift);
     }
 
+    public static BenefitService from(final PayAmount payAmount){
+        return new BenefitService(payAmount);
+    }
+
     private boolean isGiftNeeded(final PayAmount payAmount) {
         if (payAmount.isMoreThan(MINMUM_ORDER_PRICE)) return true;
         return false;
+    }
+
+    public boolean isGift(){
+        return benefit.isGift();
     }
 
 }

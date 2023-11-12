@@ -20,4 +20,9 @@ public class Benefit {
         }
         return NOTHING;
     }
+
+    public boolean isGift() {
+        return isGift;
+    }
+
 }
