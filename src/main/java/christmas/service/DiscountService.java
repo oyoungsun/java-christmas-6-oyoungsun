@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.domain.BenefitDiscount;
 import christmas.domain.ChristmasDiscount;
 import christmas.domain.Date;
 import christmas.domain.Discount;
@@ -29,11 +30,11 @@ public class DiscountService {
         return null;
     }
 
-    public void discount(int mainCount, int dessertCount){
+    public void discount(final int mainCount, final int dessertCount, final BenefitService benefitService){
         int christmasDiscount = christmasDiscount();
         int weekdayDiscount = weekdayDiscount(dessertCount);
         int weekendDiscount =  weekendDiscount(mainCount);
-        benefitEvent();
+        int benefitDiscount = benefitEvent(benefitService);
     }
 
     private int christmasDiscount() {
@@ -63,8 +64,13 @@ public class DiscountService {
         return 0;
     }
 
-    private void benefitEvent() {
-        return;
+    private int benefitEvent(final BenefitService benefitService) {
+        Discount benefit = BenefitDiscount.from(benefitService.isGift());
+        if(benefitService.isGift()){
+            discounts.add(benefit);
+            return benefit.reqeustDiscountAmount();
+        }
+        return 0;
     }
 
 //    public int requestTotalDiscountAmount(){

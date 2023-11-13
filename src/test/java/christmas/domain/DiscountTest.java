@@ -3,6 +3,7 @@ package christmas.domain;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import christmas.utils.validators.DateValidator;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -82,9 +83,9 @@ class DiscountTest {
         // given
         Date date = Date.from(day, new DateValidator());
         // when
-        WeekendDiscount weeken = WeekendDiscount.from(date, 1);
+        WeekendDiscount weekend = WeekendDiscount.from(date, 1);
         // then
-        assertThat(weeken).isInstanceOf(WeekendDiscount.class);
+        assertThat(weekend).isInstanceOf(WeekendDiscount.class);
     }
 
     @ParameterizedTest
@@ -93,9 +94,9 @@ class DiscountTest {
         // given
         Date date = Date.from(day, new DateValidator());
         // when
-        WeekendDiscount weeken = WeekendDiscount.from(date, 1);
+        WeekendDiscount weekend = WeekendDiscount.from(date, 1);
         // then
-        assertThat(weeken).isNull();
+        assertThat(weekend).isNull();
     }
 
     @ParameterizedTest
@@ -103,10 +104,41 @@ class DiscountTest {
     void WeekendDiscount는_주말할인금액을_반환한다(int dessertCount, int expectedDiscount) {
         // given
         Date date = Date.from(1, new DateValidator());
-        WeekendDiscount weeken = WeekendDiscount.from(date, dessertCount);
+        WeekendDiscount weekend = WeekendDiscount.from(date, dessertCount);
         // when
-        int discount = weeken.reqeustDiscountAmount();
+        int discount = weekend.reqeustDiscountAmount();
         // then
         assertThat(discount).isEqualTo(expectedDiscount);
+    }
+
+    @Test
+    void BenefitDsicount는_증정이_있으면_생성된다() {
+        // given
+        boolean isGift = true;
+        // when
+        BenefitDiscount benefit = BenefitDiscount.from(isGift);
+        // then
+        assertThat(benefit).isInstanceOf(BenefitDiscount.class);
+    }
+
+    @Test
+    void BenefitDsicount는_증정이_없으면_생성되지않는다() {
+        // given
+        boolean isGift = false;
+        // when
+        BenefitDiscount benefit = BenefitDiscount.from(isGift);
+        // then
+        assertThat(benefit).isNull();
+    }
+
+    @Test
+    void BenefitDsicount는_증정금액을_반환한다() {
+        // given
+        boolean isGift = true;
+        BenefitDiscount benefit = BenefitDiscount.from(isGift);
+        // when
+        int discount = benefit.reqeustDiscountAmount();
+        // then
+        assertThat(discount).isEqualTo(25000);
     }
 }
