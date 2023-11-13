@@ -9,21 +9,23 @@ import christmas.domain.PayAmount;
 import christmas.domain.discounts.SpecialDiscount;
 import christmas.domain.discounts.WeekdayDiscount;
 import christmas.domain.discounts.WeekendDiscount;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DiscountService {
     private static final int MINIMUM_EVENT_PRICE = 10000;
     private static final String NOTHING = "없음\n";
-    private final Set<Discount> discounts;
+    private final Map<Discount, Integer> discounts;
     private final PayAmount payAmount;
     private final Date date;
 
     private DiscountService(final PayAmount payAmount, final Date date){
         this.payAmount = payAmount;
         this.date = date;
-        this.discounts = new HashSet<>();
+        this.discounts = new HashMap<>();
     }
 
     public static DiscountService from(final PayAmount payAmount, final Date date){
@@ -34,56 +36,52 @@ public class DiscountService {
     }
 
     public void discount(final int mainCount, final int dessertCount, final boolean isGift){
-        int christmasDiscount = christmasDiscount();
-        int weekdayDiscount = weekdayDiscount(dessertCount);
-        int weekendDiscount =  weekendDiscount(mainCount);
-        int specialDiscount = specialDiscount();
-        int benefitDiscount = benefitEvent(isGift);
+        christmasDiscount();
+        weekdayDiscount(dessertCount);
+        weekendDiscount(mainCount);
+        specialDiscount();
+        benefitEvent(isGift);
     }
 
-    private int specialDiscount() {
+    private void specialDiscount() {
         Discount special = SpecialDiscount.from(date);
         if(special != null){
-            discounts.add(special);
-            return special.reqeustDiscountAmount();
+            int specialDiscount = special.reqeustDiscountAmount();
+            discounts.put(special, specialDiscount);
         }
-        return 0;
     }
 
-    private int christmasDiscount() {
+    private void christmasDiscount() {
         Discount christmas = ChristmasDiscount.from(date);
         if(christmas != null) {
-            discounts.add(christmas);
-            return christmas.reqeustDiscountAmount();
+            int christmasDiscount = christmas.reqeustDiscountAmount();
+            discounts.put(christmas, christmasDiscount);
+
         }
-        return 0;
     }
 
-    private int weekdayDiscount(final int dessertCount) {
+    private void weekdayDiscount(final int dessertCount) {
         Discount weekday = WeekdayDiscount.from(date, dessertCount);
         if(weekday != null){
-            discounts.add(weekday);
-            return weekday.reqeustDiscountAmount();
+            int weekdayDiscount = weekday.reqeustDiscountAmount();
+            discounts.put(weekday, weekdayDiscount);
         }
-        return 0;
     }
 
-    private int weekendDiscount(final int mainCount) {
+    private void weekendDiscount(final int mainCount) {
         Discount weekend = WeekendDiscount.from(date, mainCount);
         if(weekend != null){
-            discounts.add(weekend);
-            return weekend.reqeustDiscountAmount();
+            int weekendDiscount = weekend.reqeustDiscountAmount();
+            discounts.put(weekend, weekendDiscount);
         }
-        return 0;
     }
 
-    private int benefitEvent(final boolean isGift) {
+    private void benefitEvent(final boolean isGift) {
         Discount benefit = BenefitDiscount.from(isGift);
         if(benefit != null){
-            discounts.add(benefit);
-            return benefit.reqeustDiscountAmount();
+            int benefitDiscount = benefit.reqeustDiscountAmount();
+            discounts.put(benefit, benefitDiscount);
         }
-        return 0;
     }
 
 //    public int requestTotalDiscountAmount(){
@@ -98,6 +96,6 @@ public class DiscountService {
         if(discounts.size()==0){
             return NOTHING;
         }
-        return discounts.stream().map(Object::toString).collect(Collectors.joining(StringConstants.ENTER));
+        return discounts.entrySet().stream().map(Object::toString).collect(Collectors.joining(StringConstants.ENTER));
     }
 }
