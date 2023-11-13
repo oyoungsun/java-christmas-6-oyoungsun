@@ -18,9 +18,11 @@ import java.util.stream.Collectors;
 public class DiscountService {
     private static final int MINIMUM_EVENT_PRICE = 10000;
     private static final String NOTHING = "없음\n";
+    private static int gift = 0;
     private final Map<Discount, Integer> discounts;
     private final PayAmount payAmount;
     private final Date date;
+
 
     private DiscountService(final PayAmount payAmount, final Date date){
         this.payAmount = payAmount;
@@ -79,17 +81,21 @@ public class DiscountService {
     private void benefitEvent(final boolean isGift) {
         Discount benefit = BenefitDiscount.from(isGift);
         if(benefit != null){
-            int benefitDiscount = benefit.reqeustDiscountAmount();
-            discounts.put(benefit, benefitDiscount);
+            gift = benefit.reqeustDiscountAmount();
+            discounts.put(benefit, gift);
         }
     }
 
-//    public int requestTotalDiscountAmount(){
-//        return discounts.stream().
-//                mapToInt(
-//                        discount -> discount.getDiscountAmount()
-//                ).sum();
-//    }
+    public int requestTotalDiscountAmount(){
+        return discounts.entrySet().stream().mapToInt(discount -> discount.getValue()).sum();
+    }
+
+    public int requestActualDiscountAmount(){
+        if(gift!=0) {
+            return discounts.entrySet().stream().mapToInt(discount -> discount.getValue()).sum() - gift;
+        }
+        return discounts.entrySet().stream().mapToInt(discount -> discount.getValue()).sum();
+    }
 
     @Override
     public String toString() {

@@ -51,4 +51,27 @@ class DiscountServiceTest {
                 "특별 할인: -1,000원",
                 "증정 이벤트: -25,000원");
     }
+
+    @Test
+    void requestTotalDiscountAmount으로_총혜택금액을_반환한다(){
+        // given
+        DiscountService discountService = TestFactory.createDiscontService();
+        discountService.discount(0,2, true);
+        // when
+        int result = discountService.requestTotalDiscountAmount();
+        // then
+        assertThat(result).isEqualTo(31246);
+    }
+
+    @Test
+    void requestActualDiscountAmount으로_실제혜택금액을_반환한다(){
+        // given
+        DiscountService discountService = TestFactory.createDiscontService();
+        discountService.discount(0,2, true);
+        // when
+        int result = discountService.requestActualDiscountAmount();
+        // then
+        assertThat(result).isEqualTo(6246);
+
+    }
 }
