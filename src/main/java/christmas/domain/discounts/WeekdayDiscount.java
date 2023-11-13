@@ -1,8 +1,13 @@
-package christmas.domain;
+package christmas.domain.discounts;
 
-public class WeekdayDiscount implements Discount{
+import static christmas.constants.StringConstants.WON_FORMAT;
+
+import christmas.domain.Date;
+
+public class WeekdayDiscount implements Discount {
 
     private static final int WEEKDAY_DISCOUNT = 2023;
+
     private final Date date;
     private final int dessertCount;
 
@@ -21,6 +26,11 @@ public class WeekdayDiscount implements Discount{
     @Override
     public int reqeustDiscountAmount() {
         return dessertCount * WEEKDAY_DISCOUNT;
+    }
+
+    @Override
+    public String toString() {
+        return "평일 할인: -" + WON_FORMAT.format(dessertCount * WEEKDAY_DISCOUNT);
     }
 }
 
