@@ -1,6 +1,5 @@
 package christmas.domain.dto;
 
-import christmas.domain.Order;
 import christmas.service.DiscountService;
 
 public class DiscountDto {

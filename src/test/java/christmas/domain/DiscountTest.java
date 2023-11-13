@@ -5,6 +5,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import christmas.domain.discounts.BenefitDiscount;
 import christmas.domain.discounts.ChristmasDiscount;
 import christmas.domain.discounts.Discount;
+import christmas.domain.discounts.SpecialDiscount;
 import christmas.domain.discounts.WeekdayDiscount;
 import christmas.domain.discounts.WeekendDiscount;
 import christmas.utils.validators.DateValidator;
@@ -145,5 +146,38 @@ class DiscountTest {
         int discount = benefit.reqeustDiscountAmount();
         // then
         assertThat(discount).isEqualTo(25000);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {3, 25, 31})
+    void SpecialDiscount는_특별날에만_생성된다(int day) {
+        // given
+        Date date = Date.from(day, new DateValidator());
+        // when
+        SpecialDiscount special = SpecialDiscount.from(date);
+        // then
+        assertThat(special).isInstanceOf(SpecialDiscount.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {4, 26, 30})
+    void SpecialDiscount는_특별날이아니면_생성되지않는다(int day) {
+        // given
+        Date date = Date.from(day, new DateValidator());
+        // when
+        SpecialDiscount special = SpecialDiscount.from(date);
+        // then
+        assertThat(special).isNull();
+    }
+
+    @Test
+    void SpecialDiscount는_특별할인_금액을_반환한다() {
+        // given
+        Date date = Date.from(3, new DateValidator());
+        SpecialDiscount special = SpecialDiscount.from(date);
+        // when
+        int result = special.reqeustDiscountAmount();
+        // then
+        assertThat(result).isEqualTo(1000);
     }
 }

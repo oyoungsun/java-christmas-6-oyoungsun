@@ -45,9 +45,10 @@ class DiscountServiceTest {
         // when
         String result = discountService.toString();
         // then
-        assertThat(result).contains("크리스마스 디데이 할인: -1,200원",
+        assertThat(result).contains(
+                "크리스마스 디데이 할인: -1,200원",
                 "평일 할인: -4,046원",
-//                "특별 할인: -1,000원",
+                "특별 할인: -1,000원",
                 "증정 이벤트: -25,000원");
     }
 }
