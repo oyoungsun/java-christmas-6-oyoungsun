@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.domain.ChristmasDiscount;
 import christmas.domain.Date;
 import christmas.domain.Discount;
 import christmas.domain.PayAmount;
@@ -27,14 +28,19 @@ public class DiscountService {
     }
 
     public void discount(){
-        christmasDiscount();
+        int christmasDiscount = christmasDiscount();
         weekdayDiscount();
         weekendDiscount();
         benefitEvent();
     }
 
-    private void christmasDiscount() {
-        return;
+    private int christmasDiscount() {
+        Discount christmas = ChristmasDiscount.from(date);
+        if(christmas != null) {
+            discounts.add(christmas);
+            return christmas.reqeustDiscountAmount();
+        }
+        return 0;
     }
 
     private void benefitEvent() {
