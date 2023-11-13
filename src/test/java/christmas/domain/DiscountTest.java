@@ -2,6 +2,11 @@ package christmas.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import christmas.domain.discounts.BenefitDiscount;
+import christmas.domain.discounts.ChristmasDiscount;
+import christmas.domain.discounts.Discount;
+import christmas.domain.discounts.WeekdayDiscount;
+import christmas.domain.discounts.WeekendDiscount;
 import christmas.utils.validators.DateValidator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

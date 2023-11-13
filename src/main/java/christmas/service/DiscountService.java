@@ -1,14 +1,16 @@
 package christmas.service;
 
-import christmas.domain.BenefitDiscount;
-import christmas.domain.ChristmasDiscount;
+import christmas.constants.StringConstants;
+import christmas.domain.discounts.BenefitDiscount;
+import christmas.domain.discounts.ChristmasDiscount;
 import christmas.domain.Date;
-import christmas.domain.Discount;
+import christmas.domain.discounts.Discount;
 import christmas.domain.PayAmount;
-import christmas.domain.WeekdayDiscount;
-import christmas.domain.WeekendDiscount;
+import christmas.domain.discounts.WeekdayDiscount;
+import christmas.domain.discounts.WeekendDiscount;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class DiscountService {
     private static final int MINIMUM_EVENT_PRICE = 10000;
@@ -30,11 +32,11 @@ public class DiscountService {
         return null;
     }
 
-    public void discount(final int mainCount, final int dessertCount, final BenefitService benefitService){
+    public void discount(final int mainCount, final int dessertCount, final boolean isGift){
         int christmasDiscount = christmasDiscount();
         int weekdayDiscount = weekdayDiscount(dessertCount);
         int weekendDiscount =  weekendDiscount(mainCount);
-        int benefitDiscount = benefitEvent(benefitService);
+        int benefitDiscount = benefitEvent(isGift);
     }
 
     private int christmasDiscount() {
@@ -64,9 +66,9 @@ public class DiscountService {
         return 0;
     }
 
-    private int benefitEvent(final BenefitService benefitService) {
-        Discount benefit = BenefitDiscount.from(benefitService.isGift());
-        if(benefitService.isGift()){
+    private int benefitEvent(final boolean isGift) {
+        Discount benefit = BenefitDiscount.from(isGift);
+        if(benefit != null){
             discounts.add(benefit);
             return benefit.reqeustDiscountAmount();
         }
@@ -82,9 +84,9 @@ public class DiscountService {
 
     @Override
     public String toString() {
-        if(discounts.size()!=0){
+        if(discounts.size()==0){
             return NOTHING;
         }
-        return discounts.stream().toString();
+        return discounts.stream().map(Object::toString).collect(Collectors.joining(StringConstants.ENTER));
     }
 }

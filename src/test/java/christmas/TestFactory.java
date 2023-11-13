@@ -1,7 +1,11 @@
 package christmas;
 
+import christmas.domain.Date;
 import christmas.domain.Order;
 import christmas.domain.OrderItem;
+import christmas.domain.PayAmount;
+import christmas.service.DiscountService;
+import christmas.utils.validators.DateValidator;
 import christmas.utils.validators.OrderItemValidator;
 import christmas.utils.validators.OrderValidator;
 import java.util.List;
@@ -17,6 +21,12 @@ public class TestFactory {    //테스트에 필요한 객체를 생성한다.
         List<OrderItem> items = List.of(OrderItem.of("타파스", 1, validator),
                 OrderItem.of("제로콜라", 1, validator));
         return Order.from(items, new OrderValidator());
+    }
+
+    public static DiscountService createDiscontService(){
+        PayAmount amount = new PayAmount(142000);
+        Date date = Date.from(3, new DateValidator());
+        return DiscountService.from(amount, date);
     }
 
 }

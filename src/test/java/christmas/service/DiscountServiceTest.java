@@ -2,6 +2,7 @@ package christmas.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import christmas.TestFactory;
 import christmas.domain.Date;
 import christmas.domain.PayAmount;
 import christmas.utils.validators.DateValidator;
@@ -34,5 +35,19 @@ class DiscountServiceTest {
         DiscountService service = DiscountService.from(payAmount, date);
         // then
         assertNull(service);
+    }
+
+    @Test
+    void toString으로_혜택_내역을_반환한다(){
+        // given
+        DiscountService discountService = TestFactory.createDiscontService();
+        discountService.discount(0,2, true);
+        // when
+        String result = discountService.toString();
+        // then
+        assertThat(result).contains("크리스마스 디데이 할인: -1,200원",
+                "평일 할인: -4,046원",
+//                "특별 할인: -1,000원",
+                "증정 이벤트: -25,000원");
     }
 }
