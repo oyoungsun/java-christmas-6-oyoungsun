@@ -76,5 +76,37 @@ class DiscountTest {
         assertThat(discount).isEqualTo(expectedDiscount);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 29, 30})
+    void WeekendDiscount는_주말에만_생성된다(int day) {
+        // given
+        Date date = Date.from(day, new DateValidator());
+        // when
+        WeekendDiscount weeken = WeekendDiscount.from(date, 1);
+        // then
+        assertThat(weeken).isInstanceOf(WeekendDiscount.class);
+    }
 
+    @ParameterizedTest
+    @ValueSource(ints = {3, 4, 5, 31})
+    void WeekendDiscount는_평일에는_생성되지않는다(int day) {
+        // given
+        Date date = Date.from(day, new DateValidator());
+        // when
+        WeekendDiscount weeken = WeekendDiscount.from(date, 1);
+        // then
+        assertThat(weeken).isNull();
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1, 2023", "2, 4046", "20, 40460"})
+    void WeekendDiscount는_주말할인금액을_반환한다(int dessertCount, int expectedDiscount) {
+        // given
+        Date date = Date.from(1, new DateValidator());
+        WeekendDiscount weeken = WeekendDiscount.from(date, dessertCount);
+        // when
+        int discount = weeken.reqeustDiscountAmount();
+        // then
+        assertThat(discount).isEqualTo(expectedDiscount);
+    }
 }
