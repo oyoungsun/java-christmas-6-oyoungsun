@@ -1,6 +1,7 @@
 package christmas.view;
 
 import christmas.domain.Benefit;
+import christmas.domain.dto.ActualPayDto;
 import christmas.domain.dto.BenefitDto;
 import christmas.domain.dto.DiscountDto;
 import christmas.domain.dto.EventDto;
@@ -14,6 +15,8 @@ public class OutputView {
     private static final String BENEFIT_MENU = "<증정 메뉴>";
     private static final String DISCOUNT_MENU = "<혜택 내역>";
     private static final String TOTAL_DISCOUNT_AMOUNT = "<총혜택 금액>";
+    private static final String ACTUAL_PAY_AMOUNT = "<할인 후 예상 결제 금액>";
+
     private static final String EVENT_BADGY = "<12월 이벤트 배지>";
 
 
@@ -40,6 +43,11 @@ public class OutputView {
     public void printTotalDiscountAmonut(TotalDiscountDto totalDiscount){
         System.out.println(TOTAL_DISCOUNT_AMOUNT);
         System.out.println(totalDiscount.getTotalDiscountDto());
+    }
+
+    public void printActualPayAmount(ActualPayDto actualPayDto){
+        System.out.println(ACTUAL_PAY_AMOUNT);
+        System.out.println(actualPayDto.getActualPayAmount());
     }
 
     public void printEventBadgy(EventDto event){
