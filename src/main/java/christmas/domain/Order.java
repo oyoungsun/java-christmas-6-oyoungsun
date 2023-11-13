@@ -25,7 +25,7 @@ public class Order {
         StringBuilder sb = new StringBuilder();
         orderItems.stream().map(
                 item -> item.toString()).
-                forEach(item -> sb.append(item).append(StringConstants.Enter)
+                forEach(item -> sb.append(item).append(StringConstants.ENTER)
         );
         return sb.toString();
     }
