@@ -1,7 +1,6 @@
 package christmas.domain.dto;
 
 import christmas.constants.StringConstants;
-import christmas.domain.PayAmount;
 
 public class TotalDiscountDto {
     private final String amount;
