@@ -25,4 +25,11 @@ public class Date {
         return false;
     }
 
+    public boolean isBefore(int other) {
+        return day <= other;
+    }
+
+    public int getDifferent(final int other) {
+        return this.day - other;
+    }
 }

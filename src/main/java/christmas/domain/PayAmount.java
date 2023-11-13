@@ -7,7 +7,7 @@ public class PayAmount {
     final DecimalFormat fomatter = new DecimalFormat("###,###원");
 
     public PayAmount(int totalOrderAmount){
-        this.totalOrderAmount = totalPayAmount;
+        this.totalOrderAmount = totalOrderAmount;
     }
 
     public boolean isMoreThan(final int other) {
