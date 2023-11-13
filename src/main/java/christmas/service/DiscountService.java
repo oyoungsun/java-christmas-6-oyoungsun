@@ -4,6 +4,8 @@ import christmas.domain.ChristmasDiscount;
 import christmas.domain.Date;
 import christmas.domain.Discount;
 import christmas.domain.PayAmount;
+import christmas.domain.WeekdayDiscount;
+import christmas.domain.WeekendDiscount;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,10 +29,10 @@ public class DiscountService {
         return null;
     }
 
-    public void discount(){
+    public void discount(int mainCount, int dessertCount){
         int christmasDiscount = christmasDiscount();
-        weekdayDiscount();
-        weekendDiscount();
+        int weekdayDiscount = weekdayDiscount(dessertCount);
+        int weekendDiscount =  weekendDiscount(mainCount);
         benefitEvent();
     }
 
@@ -43,15 +45,25 @@ public class DiscountService {
         return 0;
     }
 
+    private int weekdayDiscount(final int dessertCount) {
+        Discount weekday = WeekdayDiscount.from(date, dessertCount);
+        if(weekday != null){
+            discounts.add(weekday);
+            return weekday.reqeustDiscountAmount();
+        }
+        return 0;
+    }
+
+    private int weekendDiscount(final int mainCount) {
+        Discount weekend = WeekendDiscount.from(date, mainCount);
+        if(weekend != null){
+            discounts.add(weekend);
+            return weekend.reqeustDiscountAmount();
+        }
+        return 0;
+    }
+
     private void benefitEvent() {
-        return;
-    }
-
-    private void weekdayDiscount() {
-        return;
-    }
-
-    private void weekendDiscount() {
         return;
     }
 
