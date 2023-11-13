@@ -1,10 +1,11 @@
 package christmas.domain;
 
+import static christmas.constants.StringConstants.WON_FORMAT;
+
 import java.text.DecimalFormat;
 
 public class PayAmount {
     final int totalOrderAmount;
-    final DecimalFormat fomatter = new DecimalFormat("###,###원");
 
     public PayAmount(int totalOrderAmount){
         this.totalOrderAmount = totalOrderAmount;
@@ -19,6 +20,6 @@ public class PayAmount {
     }
     @Override
     public String toString() {
-        return fomatter.format(totalOrderAmount);
+        return WON_FORMAT.format(totalOrderAmount);
     }
 }
