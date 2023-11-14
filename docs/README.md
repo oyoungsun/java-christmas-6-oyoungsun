@@ -118,3 +118,4 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 # 추가 리팩토링 목록
 ❎ PayAmonut(총 주문 금액)는 최소 주문금액, ```제로콜라, 3000원``` 보다 같거나 커야한다.
 ❎ PayAmonut는 최소 주문금액, ```레드와인*20, 1,200,000원``` 보다 같거나 작아야한다.
+❎ Exception 발생시 재 입력 기회는 단 10번으로 한정한다. (또는 while문 고려해보기)

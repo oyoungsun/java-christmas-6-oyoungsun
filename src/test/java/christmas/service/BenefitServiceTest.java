@@ -16,7 +16,7 @@ class BenefitServiceTest {
         // when
         BenefitService service = BenefitService.from(payAmount);
         // then
-        assertThat(service.isGift()).isEqualTo(expected);
+        assertThat(service.getBenefit().isGift()).isEqualTo(expected);
     }
 
 

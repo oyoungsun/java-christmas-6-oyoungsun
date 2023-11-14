@@ -9,6 +9,7 @@ import christmas.domain.PayAmount;
 import christmas.domain.discounts.SpecialDiscount;
 import christmas.domain.discounts.WeekdayDiscount;
 import christmas.domain.discounts.WeekendDiscount;
+import christmas.view.OutputView;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -20,27 +21,32 @@ public class DiscountService {
     private final Map<Discount, Integer> discounts;
     private final PayAmount payAmount;
     private final Date date;
+    private final boolean haveToDiscount;
 
 
-    private DiscountService(final PayAmount payAmount, final Date date) {
+
+    private DiscountService(final PayAmount payAmount, final Date date, final boolean haveToDiscount) {
         this.payAmount = payAmount;
         this.date = date;
+        this.haveToDiscount = haveToDiscount;
         this.discounts = new HashMap<>();
     }
 
     public static DiscountService from(final PayAmount payAmount, final Date date) {
-        if (payAmount.isMoreThan(MINIMUM_EVENT_PRICE)) {
-            return new DiscountService(payAmount, date);
+        if (payAmount.isMoreThan(MINIMUM_EVENT_PRICE)){
+            return new DiscountService(payAmount, date, true);
         }
-        return null;
+        return new DiscountService(payAmount, date, false);
     }
 
     public void discount(final int mainCount, final int dessertCount, final boolean isGift) {
-        christmasDiscount();
-        weekdayDiscount(dessertCount);
-        weekendDiscount(mainCount);
-        specialDiscount();
-        benefitEvent(isGift);
+        if(haveToDiscount) {
+            christmasDiscount();
+            weekdayDiscount(dessertCount);
+            weekendDiscount(mainCount);
+            specialDiscount();
+            benefitEvent(isGift);
+        }
     }
 
     private void specialDiscount() {

@@ -24,8 +24,7 @@ public class BenefitService {
         return false;
     }
 
-    public boolean isGift(){
-        return benefit.isGift();
+    public Benefit getBenefit() {
+        return benefit;
     }
-
 }
