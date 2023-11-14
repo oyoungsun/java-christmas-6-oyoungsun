@@ -106,6 +106,6 @@ public class DiscountService {
         if (discounts.size() == 0) {
             return NOTHING;
         }
-        return discounts.entrySet().stream().map(Object::toString).collect(Collectors.joining(StringConstants.ENTER));
+        return discounts.entrySet().stream().map(item -> item.getKey().toString()).collect(Collectors.joining(StringConstants.ENTER));
     }
 }

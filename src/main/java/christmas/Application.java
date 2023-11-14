@@ -2,7 +2,6 @@ package christmas;
 
 import christmas.controller.EventPlannerController;
 import christmas.utils.InputConvertor;
-import christmas.utils.validators.InputValidator;
 import christmas.view.Input;
 import christmas.view.InputView;
 
