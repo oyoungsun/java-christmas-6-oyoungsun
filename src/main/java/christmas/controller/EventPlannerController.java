@@ -11,18 +11,18 @@ import christmas.domain.dto.PayAmountDto;
 import christmas.domain.dto.TotalDiscountDto;
 import christmas.service.BenefitService;
 import christmas.service.DiscountService;
-import christmas.view.InputView;
+import christmas.view.Input;
 import christmas.view.OutputView;
 
 public class EventPlannerController {
-    private final InputView inputView;
+    private final Input inputView;
     private DiscountService discountService;
     private BenefitService benefitService;
     private Order order;
     private Date date;
     private PayAmount payAmount;
 
-    public EventPlannerController(final InputView inputView){
+    public EventPlannerController(final Input inputView){
         this.inputView = inputView;
     }
 
