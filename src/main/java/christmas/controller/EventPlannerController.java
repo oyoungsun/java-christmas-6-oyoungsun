@@ -38,7 +38,7 @@ public class EventPlannerController {
         total();
         badgy(totalDiscountAmount);
     }
-        private void guideOrderInformation() {
+    private void guideOrderInformation() {
         OutputView.printHello();
         date = inputView.readDate();
         order = inputView.readOrder();
