@@ -1,7 +1,5 @@
 package christmas.view;
 
-import christmas.domain.Date;
-import christmas.domain.Order;
 import christmas.utils.exception.ExceptionHandler;
 
 public class ProxyInputView implements Input{

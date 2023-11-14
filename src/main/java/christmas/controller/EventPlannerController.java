@@ -3,6 +3,7 @@ package christmas.controller;
 import christmas.domain.Date;
 import christmas.domain.Event;
 import christmas.domain.Order;
+import christmas.domain.OrderItem;
 import christmas.domain.PayAmount;
 import christmas.domain.dto.ActualPayDto;
 import christmas.domain.dto.EventDto;
@@ -11,20 +12,31 @@ import christmas.domain.dto.PayAmountDto;
 import christmas.domain.dto.TotalDiscountDto;
 import christmas.service.BenefitService;
 import christmas.service.DiscountService;
+import christmas.utils.InputConvertor;
 import christmas.utils.exception.ExceptionHandler;
+import christmas.utils.validators.DateValidator;
+import christmas.utils.validators.OrderItemValidator;
+import christmas.utils.validators.OrderValidator;
 import christmas.view.Input;
 import christmas.view.OutputView;
+import java.util.List;
 
 public class EventPlannerController {
     private final Input inputView;
+    private final InputConvertor convertor;
     private DiscountService discountService;
     private BenefitService benefitService;
     private Order order;
     private Date date;
     private PayAmount payAmount;
 
-    public EventPlannerController(final Input inputView){
+    private EventPlannerController(final Input inputView, final InputConvertor convertor){
         this.inputView = inputView;
+        this.convertor = convertor;
+    }
+
+    public static EventPlannerController of(final Input input, final InputConvertor convertor) {
+        return new EventPlannerController(input, convertor);
     }
 
     public void run(){
@@ -42,10 +54,12 @@ public class EventPlannerController {
     private void guideOrderInformation() {
         OutputView.printHello();
         String day = inputView.readDate();
-        String order = inputView.readOrder();
-        ExceptionHandler.convert();
-        OutputView.printExpectEvent();
+        date = ExceptionHandler.convert(convertor::convertDate, day, new DateValidator());
 
+        String orders = inputView.readOrder();
+        List<OrderItem> orderItems = ExceptionHandler.convert(convertor::convertOrderItems, orders, new OrderItemValidator());
+        order = ExceptionHandler.convert(convertor::convertOrder, orderItems, new OrderValidator());
+        OutputView.printExpectEvent();
     }
 
     private int orderMenu() {
