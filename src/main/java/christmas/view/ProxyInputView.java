@@ -11,12 +11,12 @@ public class ProxyInputView implements Input{
 
     @Override
     public String readDate() {
-        return ExceptionHandler.input(viewable::readDate);
+        return ExceptionHandler.input(viewable::readDate, 0);
     }
 
     @Override
     public String readOrder() {
-        return ExceptionHandler.input(viewable::readOrder);
+        return ExceptionHandler.input(viewable::readOrder, 0);
     }
 
 }

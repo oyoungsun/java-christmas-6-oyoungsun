@@ -17,19 +17,16 @@ public class InputConvertor {
     private static final String DASH = "-";
 
     public Date convertDate(final String input, DateValidator validator) {
-        int day = covertStringToInt(input);
+        int day = 0;
+        try {
+            day = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        }
         return Date.from(day, validator);
     }
 
-    private int covertStringToInt(final String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("입력한 문자가 정수가 아닙니다");
-        }
-    }
-
-    public Order convertOrder(final  List<OrderItem> input, final OrderValidator validator) {
+    public Order convertOrder(final List<OrderItem> input, final OrderValidator validator) {
         return Order.from(input, validator);
     }
 
@@ -46,7 +43,16 @@ public class InputConvertor {
     private OrderItem convertOrderItem(final String item, final OrderItemValidator validator) {
         String[] splitedByDash = item.split(DASH);
         String menu = splitedByDash[0];
-        int count = covertStringToInt(splitedByDash[1]);
+        int count = covertStringToCount(splitedByDash[1]);
         return OrderItem.of(menu, count, validator);
     }
+
+    private int covertStringToCount(final String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
 }

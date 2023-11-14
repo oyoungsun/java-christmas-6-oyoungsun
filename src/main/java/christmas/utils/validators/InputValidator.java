@@ -5,10 +5,10 @@ public class InputValidator {
     public static final String EMPTY_INPUT_EXCEPTION = "사용자의 입력이 비어있습니다.";
 
     public String validate(final String input) {
-        if (IsNull(input)) {
+        if (isNull(input)) {
             throw new NullPointerException(NULL_INPUT_EXCEPTION);
         }
-        if (IsEmptyString(input)) {
+        if (isEmptyString(input)) {
             throw new IllegalArgumentException(EMPTY_INPUT_EXCEPTION);
         }
         if (isBlankString(input)) {
@@ -17,11 +17,11 @@ public class InputValidator {
         return input;
     }
 
-    private boolean IsEmptyString(final String input) {
+    private boolean isEmptyString(final String input) {
         return input.isEmpty();
     }
 
-    private boolean IsNull(final String input) {
+    private boolean isNull(final String input) {
         return input == null;
     }
 

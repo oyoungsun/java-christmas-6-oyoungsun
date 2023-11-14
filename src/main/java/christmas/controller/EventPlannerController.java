@@ -1,11 +1,14 @@
 package christmas.controller;
 
+import christmas.domain.Benefit;
 import christmas.domain.Date;
 import christmas.domain.Event;
 import christmas.domain.Order;
 import christmas.domain.OrderItem;
 import christmas.domain.PayAmount;
 import christmas.domain.dto.ActualPayDto;
+import christmas.domain.dto.BenefitDto;
+import christmas.domain.dto.DiscountDto;
 import christmas.domain.dto.EventDto;
 import christmas.domain.dto.OrderOuputDto;
 import christmas.domain.dto.PayAmountDto;
@@ -30,7 +33,7 @@ public class EventPlannerController {
     private Date date;
     private PayAmount payAmount;
 
-    private EventPlannerController(final Input inputView, final InputConvertor convertor){
+    private EventPlannerController(final Input inputView, final InputConvertor convertor) {
         this.inputView = inputView;
         this.convertor = convertor;
     }
@@ -39,7 +42,8 @@ public class EventPlannerController {
         return new EventPlannerController(input, convertor);
     }
 
-    public void run(){
+    public void run() {
+        OutputView.printHello();
         guideOrderInformation();
         int totalOrderAmount = orderMenu();
         payAmount = new PayAmount(totalOrderAmount);
@@ -51,15 +55,29 @@ public class EventPlannerController {
         total();
         badgy(totalDiscountAmount);
     }
+
     private void guideOrderInformation() {
-        OutputView.printHello();
         String day = inputView.readDate();
         date = ExceptionHandler.convert(convertor::convertDate, day, new DateValidator());
-
-        String orders = inputView.readOrder();
-        List<OrderItem> orderItems = ExceptionHandler.convert(convertor::convertOrderItems, orders, new OrderItemValidator());
+        if (date == null) {
+            guideOrderInformation();
+        }
+        List<OrderItem> orderItems = guideOrder();
         order = ExceptionHandler.convert(convertor::convertOrder, orderItems, new OrderValidator());
+        if (order == null) {
+            guideOrder();
+        }
         OutputView.printExpectEvent();
+    }
+
+    private List<OrderItem> guideOrder() {
+        String orders = inputView.readOrder();
+        List<OrderItem> orderItems = ExceptionHandler.convert(convertor::convertOrderItems, orders,
+                new OrderItemValidator());
+        if (orderItems == null) {
+            guideOrder();
+        }
+        return orderItems;
     }
 
     private int orderMenu() {
@@ -67,16 +85,19 @@ public class EventPlannerController {
         OutputView.printOrderMenu(orderOuputDto);
         return order.requestTotalPrice();
     }
+
     private void requestTotalOrder() {
         PayAmountDto payAmonutDto = PayAmountDto.fromPayAmonut(payAmount);
         OutputView.printTotalPayAmount(payAmonutDto);
     }
 
-    private void discount() { // 증정, 혜택, 할
+    private void discount() {
         int mainCount = order.requestMainCount();
         int dessertCount = order.requestDessertCount();
-        boolean isGift = benefitService.isGift();
-        discountService.discount(mainCount, dessertCount, isGift);
+        Benefit benefit = benefitService.getBenefit();
+        discountService.discount(mainCount, dessertCount, benefit.isGift());
+        OutputView.printBenefit(BenefitDto.fromBenefit(benefit));
+        OutputView.printDiscount(DiscountDto.fromDiscount(discountService));
     }
 
     private int sale() {
