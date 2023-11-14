@@ -26,12 +26,18 @@ public class OrderItem {
         return MenuType.isDrink(menu);
     }
 
-    public boolean isMain() {
-        return MenuType.isMain(menu);
+    public int requestMainCount() {
+        if(MenuType.isMain(menu)){
+            return this.count;
+        }
+        return 0;
     }
 
-    public boolean isDessert() {
-        return MenuType.isDessert(menu);
+    public int requestDessertCount() {
+        if(MenuType.isDessert(menu)){
+            return this.count;
+        }
+        return 0;
     }
 
     @Override

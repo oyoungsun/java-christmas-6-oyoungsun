@@ -31,10 +31,10 @@ public class Order {
     }
 
     public int requestMainCount() {
-        return (int) orderItems.stream().filter(item -> item.isMain()).count();
+        return (int) orderItems.stream().mapToInt(item -> item.requestMainCount()).sum();
     }
 
     public int requestDessertCount() {
-        return (int) orderItems.stream().filter(item -> item.isDessert()).count();
+        return (int) orderItems.stream().mapToInt(item -> item.requestDessertCount()).sum();
     }
 }
