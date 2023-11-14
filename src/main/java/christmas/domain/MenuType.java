@@ -19,4 +19,12 @@ public enum MenuType {
         return DRINK.menuGroup.stream().anyMatch(drink -> drink == menu);
     }
 
+    public static boolean isMain(final Menu menu) {
+        return MAIN.menuGroup.stream().anyMatch(drink -> drink == menu);
+    }
+
+    public static boolean isDessert(final Menu menu) {
+        return DESSERT.menuGroup.stream().anyMatch(drink -> drink == menu);
+    }
+
 }
