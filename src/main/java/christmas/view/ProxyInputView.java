@@ -11,18 +11,13 @@ public class ProxyInputView implements Input{
         this.viewable = viewable;
     }
 
-//    @Override
-//    public Money getMoneyInput() {
-//        return ExceptionHandler.input(viewable::getMoneyInput);
-//    }
-
     @Override
-    public Date readDate() {
+    public String readDate() {
         return ExceptionHandler.input(viewable::readDate);
     }
 
     @Override
-    public Order readOrder() {
+    public String readOrder() {
         return ExceptionHandler.input(viewable::readOrder);
     }
 

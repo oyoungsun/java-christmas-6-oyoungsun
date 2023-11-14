@@ -11,6 +11,7 @@ import christmas.domain.dto.PayAmountDto;
 import christmas.domain.dto.TotalDiscountDto;
 import christmas.service.BenefitService;
 import christmas.service.DiscountService;
+import christmas.utils.exception.ExceptionHandler;
 import christmas.view.Input;
 import christmas.view.OutputView;
 
@@ -40,8 +41,9 @@ public class EventPlannerController {
     }
     private void guideOrderInformation() {
         OutputView.printHello();
-        date = inputView.readDate();
-        order = inputView.readOrder();
+        String day = inputView.readDate();
+        String order = inputView.readOrder();
+        ExceptionHandler.convert();
         OutputView.printExpectEvent();
 
     }

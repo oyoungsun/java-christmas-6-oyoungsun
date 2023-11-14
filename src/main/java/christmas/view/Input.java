@@ -5,6 +5,6 @@ import christmas.domain.Date;
 import christmas.domain.Order;
 
 public interface Input {
-    Date readDate();
-    Order readOrder();
+    String readDate();
+    String readOrder();
 }

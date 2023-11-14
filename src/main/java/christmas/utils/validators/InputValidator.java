@@ -4,7 +4,7 @@ public class InputValidator {
     public static final String NULL_INPUT_EXCEPTION = "사용자의 입력이 null 입니다.";
     public static final String EMPTY_INPUT_EXCEPTION = "사용자의 입력이 비어있습니다.";
 
-    public static String validate(final String input) {
+    public String validate(final String input) {
         if (IsNull(input)) {
             throw new NullPointerException(NULL_INPUT_EXCEPTION);
         }
@@ -17,15 +17,15 @@ public class InputValidator {
         return input;
     }
 
-    private static boolean IsEmptyString(final String input) {
+    private boolean IsEmptyString(final String input) {
         return input.isEmpty();
     }
 
-    private static boolean IsNull(final String input) {
+    private boolean IsNull(final String input) {
         return input == null;
     }
 
-    private static boolean isBlankString(final String input) {
+    private boolean isBlankString(final String input) {
         return input.isBlank();
     }
 
