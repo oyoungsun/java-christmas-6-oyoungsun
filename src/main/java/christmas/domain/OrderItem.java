@@ -12,10 +12,26 @@ public class OrderItem {
         this.count = count;
     }
 
-    public static OrderItem of(final String menuName, final int count, OrderItemValidator orderItemValidator){
+    public static OrderItem of(final String menuName, final int count, OrderItemValidator orderItemValidator) {
         orderItemValidator.validate(menuName, count);
         Menu menu = Menu.findMenuByName(menuName);
         return new OrderItem(menu, count);
+    }
+
+    public int requestPrice() {
+        return menu.requestPrice(count);
+    }
+
+    public boolean isDrink() {
+        return MenuType.isDrink(menu);
+    }
+
+    public boolean isMain() {
+        return MenuType.isMain(menu);
+    }
+
+    public boolean isDessert() {
+        return MenuType.isDessert(menu);
     }
 
     @Override
@@ -28,11 +44,4 @@ public class OrderItem {
         return count;
     }
 
-    public boolean isDrink() {
-        return MenuType.isDrink(menu);
-    }
-
-    public int requestPrice() {
-        return menu.requestPrice(count);
-    }
 }

@@ -29,4 +29,12 @@ public class Order {
         );
         return sb.toString();
     }
+
+    public int requestMainCount() {
+        return (int) orderItems.stream().filter(item -> item.isMain()).count();
+    }
+
+    public int requestDessertCount() {
+        return (int) orderItems.stream().filter(item -> item.isDessert()).count();
+    }
 }
