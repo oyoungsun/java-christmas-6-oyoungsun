@@ -29,7 +29,7 @@ public class EventPlannerController {
     public void run(){
         guideOrderInformation();
         int totalOrderAmount = orderMenu();
-        PayAmount payAmount = new PayAmount(totalOrderAmount);
+        payAmount = new PayAmount(totalOrderAmount);
         requestTotalOrder();
         discountService = DiscountService.from(payAmount, date);
         benefitService = BenefitService.from(payAmount);
