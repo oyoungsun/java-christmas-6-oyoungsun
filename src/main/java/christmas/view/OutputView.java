@@ -34,7 +34,7 @@ public class OutputView {
         System.out.println(ORDER_MENU);
         System.out.println(orders.getOrders());
     }
-    public static void printTotalPayAmonut(PayAmountDto amonut){
+    public static void printTotalPayAmount(PayAmountDto amonut){
         System.out.println(TOTAL_PAY_AMOUNT);
         System.out.println(amonut.getTotalPayAmount());
     }
@@ -49,7 +49,7 @@ public class OutputView {
         System.out.println(discount.getTotalDiscount());
     }
 
-    public static void printTotalDiscountAmonut(TotalDiscountDto totalDiscount){
+    public static void printTotalDiscountAmount(TotalDiscountDto totalDiscount){
         System.out.println(TOTAL_DISCOUNT_AMOUNT);
         System.out.println(totalDiscount.getTotalDiscountDto());
     }
@@ -60,7 +60,7 @@ public class OutputView {
     }
 
 
-    public void printEventBadgy(EventDto event){
+    public static void printEventBadgy(EventDto event){
         System.out.println(EVENT_BADGY);
         System.out.println(event.getBadgy());
     }
