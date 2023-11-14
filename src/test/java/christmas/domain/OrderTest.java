@@ -29,4 +29,26 @@ class OrderTest {
         assertThat(result).isEqualTo(8500);
     }
 
+    @Test
+    void requestMainCount는_주문에서_메인의_개수를센다() {
+        //given
+        List<OrderItem> orderItmeList = TestFactory.createOrderItems();
+        Order order = Order.from(orderItmeList, new OrderValidator());
+        //when
+        int mainCount = order.requestMainCount();
+        //then
+        assertThat(mainCount).isEqualTo(2);
+    }
+
+    @Test
+    void requestDessertCount는_주문에서_디저트의_개수를센다() {
+        //given
+        List<OrderItem> orderItmeList = TestFactory.createOrderItems();
+        Order order = Order.from(orderItmeList, new OrderValidator());
+        //when
+        int dessertCount = order.requestDessertCount();
+        //then
+        assertThat(dessertCount).isEqualTo(4);
+    }
+
 }
