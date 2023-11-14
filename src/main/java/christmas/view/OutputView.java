@@ -65,6 +65,10 @@ public class OutputView {
         System.out.println(event.getBadgy());
     }
 
+    public static void printExceptionMessage(String errorMessage){
+        System.out.println(errorMessage);
+    }
+
     private static void printEmpty() {
         System.out.println(StringConstants.ENTER);
     }
