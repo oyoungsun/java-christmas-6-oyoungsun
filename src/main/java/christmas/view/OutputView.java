@@ -28,6 +28,7 @@ public class OutputView {
 
     public static void printExpectEvent() {
         System.out.println(EXPECTED_EVENT);
+        printEmpty();
     }
 
     public static void printOrderMenu(OrderOuputDto orders){
@@ -37,26 +38,31 @@ public class OutputView {
     public static void printTotalPayAmount(PayAmountDto amonut){
         System.out.println(TOTAL_PAY_AMOUNT);
         System.out.println(amonut.getTotalPayAmount());
+        printEmpty();
     }
 
     public static void printBenefit(BenefitDto benefit){
         System.out.println(BENEFIT_MENU);
         System.out.println(benefit.getBenefit());
+        printEmpty();
     }
 
     public static void printDiscount(DiscountDto discount){
         System.out.println(DISCOUNT_MENU);
         System.out.println(discount.getTotalDiscount());
+        printEmpty();
     }
 
     public static void printTotalDiscountAmount(TotalDiscountDto totalDiscount){
         System.out.println(TOTAL_DISCOUNT_AMOUNT);
         System.out.println(totalDiscount.getTotalDiscountDto());
+        printEmpty();
     }
 
     public static void printActualPayAmount(ActualPayDto actualPayDto){
         System.out.println(ACTUAL_PAY_AMOUNT);
         System.out.println(actualPayDto.getActualPayAmount());
+        printEmpty();
     }
 
 
@@ -70,6 +76,6 @@ public class OutputView {
     }
 
     private static void printEmpty() {
-        System.out.println(StringConstants.ENTER);
+        System.out.print(StringConstants.ENTER);
     }
 }

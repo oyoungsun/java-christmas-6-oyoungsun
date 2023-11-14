@@ -30,6 +30,7 @@ public class EventPlannerController {
     private DiscountService discountService;
     private BenefitService benefitService;
     private Order order;
+    private List<OrderItem> orderItems;
     private Date date;
     private PayAmount payAmount;
 
@@ -44,7 +45,9 @@ public class EventPlannerController {
 
     public void run() {
         OutputView.printHello();
-        guideOrderInformation();
+        guideDate();
+        guideOrder();
+        OutputView.printExpectEvent();
         int totalOrderAmount = orderMenu();
         payAmount = new PayAmount(totalOrderAmount);
         requestTotalOrder();
@@ -56,28 +59,29 @@ public class EventPlannerController {
         badgy(totalDiscountAmount);
     }
 
-    private void guideOrderInformation() {
+    private void guideDate() {
         String day = inputView.readDate();
         date = ExceptionHandler.convert(convertor::convertDate, day, new DateValidator());
         if (date == null) {
-            guideOrderInformation();
+            guideDate();
         }
-        List<OrderItem> orderItems = guideOrder();
+    }
+
+    private void guideOrder() {
+        guideOrderItems();
         order = ExceptionHandler.convert(convertor::convertOrder, orderItems, new OrderValidator());
         if (order == null) {
             guideOrder();
         }
-        OutputView.printExpectEvent();
     }
 
-    private List<OrderItem> guideOrder() {
+    private void guideOrderItems() {
         String orders = inputView.readOrder();
-        List<OrderItem> orderItems = ExceptionHandler.convert(convertor::convertOrderItems, orders,
+        orderItems = ExceptionHandler.convert(convertor::convertOrderItems, orders,
                 new OrderItemValidator());
         if (orderItems == null) {
-            guideOrder();
+            guideOrderItems();
         }
-        return orderItems;
     }
 
     private int orderMenu() {

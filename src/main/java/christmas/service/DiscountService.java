@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class DiscountService {
     private static final int MINIMUM_EVENT_PRICE = 10000;
-    private static final String NOTHING = "없음\n";
+    private static final String NOTHING = "없음";
     private static int gift = 0;
     private final Map<Discount, Integer> discounts;
     private final PayAmount payAmount;
