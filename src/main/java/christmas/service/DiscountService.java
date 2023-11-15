@@ -1,10 +1,10 @@
 package christmas.service;
 
+import christmas.domain.Date;
+import christmas.domain.PayAmount;
 import christmas.domain.discounts.BenefitDiscount;
 import christmas.domain.discounts.ChristmasDiscount;
-import christmas.domain.Date;
 import christmas.domain.discounts.Discount;
-import christmas.domain.PayAmount;
 import christmas.domain.discounts.SpecialDiscount;
 import christmas.domain.discounts.WeekdayDiscount;
 import christmas.domain.discounts.WeekendDiscount;
@@ -21,7 +21,6 @@ public class DiscountService {
     private final boolean haveToDiscount;
 
 
-
     private DiscountService(final PayAmount payAmount, final Date date, final boolean haveToDiscount) {
         this.payAmount = payAmount;
         this.date = date;
@@ -30,14 +29,14 @@ public class DiscountService {
     }
 
     public static DiscountService from(final PayAmount payAmount, final Date date) {
-        if (payAmount.isMoreThan(MINIMUM_EVENT_PRICE)){
+        if (payAmount.isMoreThan(MINIMUM_EVENT_PRICE)) {
             return new DiscountService(payAmount, date, true);
         }
         return new DiscountService(payAmount, date, false);
     }
 
     public void discount(final int mainCount, final int dessertCount, final boolean isGift) {
-        if(haveToDiscount) {
+        if (haveToDiscount) {
             christmasDiscount();
             weekdayDiscount(dessertCount);
             weekendDiscount(mainCount);

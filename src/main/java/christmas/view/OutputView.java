@@ -1,7 +1,6 @@
 package christmas.view;
 
 import christmas.constants.StringConstants;
-import christmas.domain.Benefit;
 import christmas.domain.dto.ActualPayDto;
 import christmas.domain.dto.BenefitDto;
 import christmas.domain.dto.DiscountDto;
@@ -22,7 +21,7 @@ public class OutputView {
 
     private static final String EVENT_BADGY = "<12월 이벤트 배지>";
 
-    public static void printHello(){
+    public static void printHello() {
         System.out.println(HELLO);
     }
 
@@ -31,47 +30,48 @@ public class OutputView {
         printEmpty();
     }
 
-    public static void printOrderMenu(OrderOuputDto orders){
+    public static void printOrderMenu(OrderOuputDto orders) {
         System.out.println(ORDER_MENU);
         System.out.println(orders.getOrders());
     }
-    public static void printTotalPayAmount(PayAmountDto amonut){
+
+    public static void printTotalPayAmount(PayAmountDto amonut) {
         System.out.println(TOTAL_PAY_AMOUNT);
         System.out.println(amonut.getTotalPayAmount());
         printEmpty();
     }
 
-    public static void printBenefit(BenefitDto benefit){
+    public static void printBenefit(BenefitDto benefit) {
         System.out.println(BENEFIT_MENU);
         System.out.println(benefit.getBenefit());
         printEmpty();
     }
 
-    public static void printDiscount(DiscountDto discount){
+    public static void printDiscount(DiscountDto discount) {
         System.out.println(DISCOUNT_MENU);
         System.out.println(discount.getTotalDiscount());
         printEmpty();
     }
 
-    public static void printTotalDiscountAmount(TotalDiscountDto totalDiscount){
+    public static void printTotalDiscountAmount(TotalDiscountDto totalDiscount) {
         System.out.println(TOTAL_DISCOUNT_AMOUNT);
         System.out.println(totalDiscount.getTotalDiscountDto());
         printEmpty();
     }
 
-    public static void printActualPayAmount(ActualPayDto actualPayDto){
+    public static void printActualPayAmount(ActualPayDto actualPayDto) {
         System.out.println(ACTUAL_PAY_AMOUNT);
         System.out.println(actualPayDto.getActualPayAmount());
         printEmpty();
     }
 
 
-    public static void printEventBadgy(EventDto event){
+    public static void printEventBadgy(EventDto event) {
         System.out.println(EVENT_BADGY);
         System.out.println(event.getBadgy());
     }
 
-    public static void printExceptionMessage(String errorMessage){
+    public static void printExceptionMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
 

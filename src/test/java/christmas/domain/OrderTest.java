@@ -20,7 +20,7 @@ class OrderTest {
     }
 
     @Test
-    void requestTotalPrice_로_주문총금액을_반환한다(){
+    void requestTotalPrice_로_주문총금액을_반환한다() {
         //given
         Order order = TestFactory.createOrder();
         //when

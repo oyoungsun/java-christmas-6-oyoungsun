@@ -1,7 +1,6 @@
 package christmas.domain;
 
 import christmas.utils.validators.DateValidator;
-import java.util.HashSet;
 import java.util.Set;
 
 public class Date {
@@ -10,7 +9,7 @@ public class Date {
     private static final int FIRST_FRIDAY = 1;
     private static final int FIRST_SATURDAY = 2;
     private static final Set<Integer> spcial = Set.of(3, 10, 17, 24, 25, 31);
-    private int day;
+    private final int day;
 
     private Date(final int day) {
         this.day = day;
@@ -25,10 +24,7 @@ public class Date {
         if (day % 7 == FIRST_FRIDAY) {
             return true;
         }
-        if (day % 7 == FIRST_SATURDAY) {
-            return true;
-        }
-        return false;
+        return day % 7 == FIRST_SATURDAY;
     }
 
     public boolean isBefore(int other) {

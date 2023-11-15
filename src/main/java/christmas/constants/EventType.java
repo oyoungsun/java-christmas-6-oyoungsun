@@ -8,7 +8,7 @@ public enum EventType {
     private final String name;
     private final int nedeed;
 
-    private EventType(final String name, final int nedeed) {
+    EventType(final String name, final int nedeed) {
         this.name = name;
         this.nedeed = nedeed;
     }

@@ -9,7 +9,6 @@ import christmas.utils.validators.DateValidator;
 import christmas.utils.validators.OrderItemValidator;
 import christmas.utils.validators.OrderValidator;
 import java.util.List;
-import org.mockito.internal.matchers.Or;
 
 public class TestFactory {    //테스트에 필요한 객체를 생성한다.
     public static List<OrderItem> createOrderItems() {

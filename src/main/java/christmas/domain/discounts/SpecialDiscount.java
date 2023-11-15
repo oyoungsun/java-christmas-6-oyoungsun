@@ -14,7 +14,7 @@ public class SpecialDiscount implements Discount {
     }
 
     public static SpecialDiscount from(final Date date) {
-        if(date.isSpecial()) {
+        if (date.isSpecial()) {
             return new SpecialDiscount(date);
         }
         return null;

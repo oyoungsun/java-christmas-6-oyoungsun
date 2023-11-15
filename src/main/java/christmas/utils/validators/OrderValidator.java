@@ -1,6 +1,5 @@
 package christmas.utils.validators;
 
-import christmas.domain.MenuType;
 import christmas.domain.OrderItem;
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class OrderValidator {
             throw new IllegalArgumentException(
                     String.format("메뉴 주문은 한 번에 최소 %d개 이상, 최대 %d개까지만 주문할 수 있습니다.", MIN_COUNT, MAX_COUNT));
         }
-        if(isAllDrink(orderItems)){
+        if (isAllDrink(orderItems)) {
             throw new IllegalArgumentException("음료만 주문 시, 주문할 수 없습니다.");
         }
     }

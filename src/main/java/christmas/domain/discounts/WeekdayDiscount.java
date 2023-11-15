@@ -11,13 +11,13 @@ public class WeekdayDiscount implements Discount {
     private final Date date;
     private final int dessertCount;
 
-    private WeekdayDiscount(final Date date, final int dessertCount){
+    private WeekdayDiscount(final Date date, final int dessertCount) {
         this.date = date;
         this.dessertCount = dessertCount;
     }
 
     public static WeekdayDiscount from(final Date date, final int dessertCount) {
-        if(!date.isWeekend()){
+        if (!date.isWeekend()) {
             return new WeekdayDiscount(date, dessertCount);
         }
         return null;
@@ -30,7 +30,7 @@ public class WeekdayDiscount implements Discount {
 
     @Override
     public String getDiscountString() {
-        return "평일 할인: -" + WON_FORMAT.format(dessertCount * WEEKDAY_DISCOUNT);
+        return "평일 할인: -" + WON_FORMAT.format((long) dessertCount * WEEKDAY_DISCOUNT);
     }
 }
 

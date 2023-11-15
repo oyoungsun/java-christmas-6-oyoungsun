@@ -2,7 +2,7 @@ package christmas.view;
 
 import christmas.utils.exception.ExceptionHandler;
 
-public class ProxyInputView implements Input{
+public class ProxyInputView implements Input {
     private final Input viewable;
 
     public ProxyInputView(Input viewable) {

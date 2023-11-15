@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 
 class DateTest {
-    private DateValidator dateValidator = new DateValidator();
+    private final DateValidator dateValidator = new DateValidator();
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4})

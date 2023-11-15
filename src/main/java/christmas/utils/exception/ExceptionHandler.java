@@ -1,10 +1,7 @@
 package christmas.utils.exception;
 
-import christmas.domain.Date;
 import christmas.view.OutputView;
 import java.util.function.BiFunction;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ExceptionHandler {

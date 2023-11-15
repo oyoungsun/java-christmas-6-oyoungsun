@@ -1,14 +1,11 @@
 package christmas.utils;
 
-import christmas.constants.StringConstants;
 import christmas.domain.Date;
 import christmas.domain.Order;
 import christmas.domain.OrderItem;
 import christmas.utils.validators.DateValidator;
-import christmas.utils.validators.InputValidator;
 import christmas.utils.validators.OrderItemValidator;
 import christmas.utils.validators.OrderValidator;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +39,9 @@ public class InputConvertor {
 
     private OrderItem convertOrderItem(final String item, final OrderItemValidator validator) {
         String[] splitedByDash = item.split(DASH);
-        if(splitedByDash.length != 2) throw new IllegalArgumentException("유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        if (splitedByDash.length != 2) {
+            throw new IllegalArgumentException("유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
         String menu = splitedByDash[0];
         int count = covertStringToCount(splitedByDash[1]);
         return OrderItem.of(menu, count, validator);

@@ -12,12 +12,12 @@ public class ChristmasDiscount implements Discount {
     private static final int FIRST_DAY = 1;
     private final Date date;
 
-    private ChristmasDiscount(final Date date){
+    private ChristmasDiscount(final Date date) {
         this.date = date;
     }
 
     public static ChristmasDiscount from(final Date date) {
-        if(date.isBefore(CHRISTMAS)){
+        if (date.isBefore(CHRISTMAS)) {
             return new ChristmasDiscount(date);
         }
         return null;
@@ -25,8 +25,9 @@ public class ChristmasDiscount implements Discount {
 
     @Override
     public String getDiscountString() {
-        return "크리스마스 디데이 할인: -" + WON_FORMAT.format(INITIAL_DISCOUNT + (date.getDifferent(FIRST_DAY)) * DAY_DISCOUNT);
+        return "크리스마스 디데이 할인: -" + WON_FORMAT.format(INITIAL_DISCOUNT + (long) (date.getDifferent(FIRST_DAY)) * DAY_DISCOUNT);
     }
+
     @Override
     public int reqeustDiscountAmount() {
         return INITIAL_DISCOUNT + (date.getDifferent(FIRST_DAY)) * DAY_DISCOUNT;

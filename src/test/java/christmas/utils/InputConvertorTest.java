@@ -1,7 +1,6 @@
 package christmas.utils;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import christmas.domain.Order;
 import christmas.domain.OrderItem;
@@ -14,7 +13,7 @@ import org.junit.jupiter.api.Test;
 class InputConvertorTest {
 
     @Test
-    void convertOrderItems는_주어진문자열배열을_OrderItem리스트로반환한다(){
+    void convertOrderItems는_주어진문자열배열을_OrderItem리스트로반환한다() {
         // given
         InputConvertor convertor = new InputConvertor();
         String input = "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1";
@@ -29,7 +28,7 @@ class InputConvertorTest {
     }
 
     @Test
-    void convertOrder는_주어진OrderItem배열을_OrderItem리스트로반환한다(){
+    void convertOrder는_주어진OrderItem배열을_OrderItem리스트로반환한다() {
         // given
         InputConvertor convertor = new InputConvertor();
         String input = "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1";

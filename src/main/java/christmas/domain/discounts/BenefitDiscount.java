@@ -12,7 +12,7 @@ public class BenefitDiscount implements Discount {
     }
 
     public static BenefitDiscount from(final boolean gift) {
-        if(gift) {
+        if (gift) {
             return new BenefitDiscount(gift);
         }
         return null;

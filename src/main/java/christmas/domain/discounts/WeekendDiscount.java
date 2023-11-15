@@ -29,6 +29,6 @@ public class WeekendDiscount implements Discount {
 
     @Override
     public String getDiscountString() {
-        return "주말 할인: -" + WON_FORMAT.format(mainCount * WEEKEND_DISCOUNT);
+        return "주말 할인: -" + WON_FORMAT.format((long) mainCount * WEEKEND_DISCOUNT);
     }
 }

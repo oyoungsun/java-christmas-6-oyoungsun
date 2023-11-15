@@ -1,7 +1,6 @@
 package christmas.domain.dto;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import christmas.TestFactory;
 import christmas.service.DiscountService;
@@ -9,10 +8,10 @@ import org.junit.jupiter.api.Test;
 
 class DiscountDtoTest {
     @Test
-    void toString으로_혜택_내역을_반환한다(){
+    void toString으로_혜택_내역을_반환한다() {
         // given
         DiscountService discountService = TestFactory.createDiscontService();
-        discountService.discount(0,2, true);
+        discountService.discount(0, 2, true);
         // when
         DiscountDto result = DiscountDto.fromDiscount(discountService.getTotalDiscounts());
         // then

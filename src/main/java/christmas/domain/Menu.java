@@ -5,10 +5,10 @@ import java.util.Arrays;
 public enum Menu {
     SOUP("양송이수프", 6000),
     TAPAS("타파스", 5500),
-    SALAD("시저샐러드",8000),
+    SALAD("시저샐러드", 8000),
     STEAK("티본스테이크", 55000),
     RIBS("바비큐립", 54000),
-    SEAFOOD_PASTA("해산물파스타",35000),
+    SEAFOOD_PASTA("해산물파스타", 35000),
     CHRISTMAS_PASTA("크리스마스파스타", 25000),
     CAKE("초코케이크", 15000),
     ICECREAM("아이스크림", 5000),
@@ -19,7 +19,7 @@ public enum Menu {
     private final String name;
     private final int price;
 
-    private Menu(final String name, final int price) {
+    Menu(final String name, final int price) {
         this.name = name;
         this.price = price;
     }
@@ -36,6 +36,6 @@ public enum Menu {
     }
 
     public int requestPrice(final int count) {
-        return this.price*count;
+        return this.price * count;
     }
 }

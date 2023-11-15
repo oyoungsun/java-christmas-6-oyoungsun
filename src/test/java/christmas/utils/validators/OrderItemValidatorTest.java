@@ -1,14 +1,14 @@
 package christmas.utils.validators;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class OrderItemValidatorTest {
-    private OrderItemValidator validator = new OrderItemValidator();
+    private final OrderItemValidator validator = new OrderItemValidator();
 
     @ParameterizedTest
     @CsvSource(value = {"'초코케이크', 1", "'레드와인', 3", "'해산물파스타', 2"})

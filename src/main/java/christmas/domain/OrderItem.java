@@ -27,14 +27,14 @@ public class OrderItem {
     }
 
     public int requestMainCount() {
-        if(MenuType.isMain(menu)){
+        if (MenuType.isMain(menu)) {
             return this.count;
         }
         return 0;
     }
 
     public int requestDessertCount() {
-        if(MenuType.isDessert(menu)){
+        if (MenuType.isDessert(menu)) {
             return this.count;
         }
         return 0;

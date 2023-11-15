@@ -9,6 +9,27 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class MenuTypeTest {
 
+    private static Stream<Arguments> generateDesertMenus() {
+        return Stream.of(Arguments.of(Menu.COLA, true),
+                Arguments.of(Menu.SOUP, false),
+                Arguments.of(Menu.CHAMPAGNE, true)
+        );
+    }
+
+    private static Stream<Arguments> generateMainMenus() {
+        return Stream.of(Arguments.of(Menu.COLA, false),
+                Arguments.of(Menu.SOUP, false),
+                Arguments.of(Menu.CHRISTMAS_PASTA, true)
+        );
+    }
+
+    private static Stream<Arguments> generateDessertMenus() {
+        return Stream.of(Arguments.of(Menu.COLA, false),
+                Arguments.of(Menu.CAKE, true),
+                Arguments.of(Menu.ICECREAM, true)
+        );
+    }
+
     @ParameterizedTest
     @MethodSource("generateDesertMenus")
     void isDrink는_주어진메뉴가_음료인지_판단한다(Menu menu, boolean expected) {
@@ -16,13 +37,6 @@ class MenuTypeTest {
         boolean result = MenuType.isDrink(menu);
         //then
         assertThat(result).isEqualTo(expected);
-    }
-
-    private static Stream<Arguments> generateDesertMenus() {
-        return Stream.of(Arguments.of(Menu.COLA, true),
-                Arguments.of(Menu.SOUP, false),
-                Arguments.of(Menu.CHAMPAGNE, true)
-        );
     }
 
     @ParameterizedTest
@@ -34,13 +48,6 @@ class MenuTypeTest {
         assertThat(result).isEqualTo(expected);
     }
 
-    private static Stream<Arguments> generateMainMenus() {
-        return Stream.of(Arguments.of(Menu.COLA, false),
-                Arguments.of(Menu.SOUP, false),
-                Arguments.of(Menu.CHRISTMAS_PASTA, true)
-        );
-    }
-
     @ParameterizedTest
     @MethodSource("generateDessertMenus")
     void isDessert는_주어진메뉴가_디저트인지_판단한다(Menu menu, boolean expected) {
@@ -48,13 +55,6 @@ class MenuTypeTest {
         boolean result = MenuType.isDessert(menu);
         //then
         assertThat(result).isEqualTo(expected);
-    }
-
-    private static Stream<Arguments> generateDessertMenus() {
-        return Stream.of(Arguments.of(Menu.COLA, false),
-                Arguments.of(Menu.CAKE, true),
-                Arguments.of(Menu.ICECREAM, true)
-        );
     }
 
 }

@@ -14,7 +14,7 @@ public class Benefit {
     }
 
     public String getGiftString() {
-        if(isGift){
+        if (isGift) {
             return GIFT;
         }
         return NOTHING;

@@ -6,7 +6,7 @@ import christmas.domain.Order;
 public class OrderOuputDto {
     private final String orders;
 
-    private OrderOuputDto(final Order order){
+    private OrderOuputDto(final Order order) {
         StringBuilder sb = new StringBuilder();
         order.getOrderItems().stream().map(
                         item -> item.getOrderItemString()).
@@ -15,7 +15,7 @@ public class OrderOuputDto {
         this.orders = sb.toString();
     }
 
-    public static OrderOuputDto fromOrder(Order order){
+    public static OrderOuputDto fromOrder(Order order) {
         return new OrderOuputDto(order);
     }
 

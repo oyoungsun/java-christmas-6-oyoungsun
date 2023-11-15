@@ -9,9 +9,9 @@ public enum MenuType {
     DESSERT(Arrays.asList(Menu.CAKE, Menu.ICECREAM)),
     DRINK(Arrays.asList(Menu.COLA, Menu.WINE, Menu.CHAMPAGNE));
 
-    private List<Menu> menuGroup;
+    private final List<Menu> menuGroup;
 
-    private MenuType(final List<Menu> menuGroup) {
+    MenuType(final List<Menu> menuGroup) {
         this.menuGroup = menuGroup;
     }
 
