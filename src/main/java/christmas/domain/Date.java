@@ -10,7 +10,6 @@ public class Date {
     private static final int FIRST_FRIDAY = 1;
     private static final int FIRST_SATURDAY = 2;
     private static final Set<Integer> spcial = Set.of(3, 10, 17, 24, 25, 31);
-
     private int day;
 
     private Date(final int day) {
