@@ -1,6 +1,5 @@
 package christmas.service;
 
-import christmas.constants.StringConstants;
 import christmas.domain.discounts.BenefitDiscount;
 import christmas.domain.discounts.ChristmasDiscount;
 import christmas.domain.Date;
@@ -9,14 +8,11 @@ import christmas.domain.PayAmount;
 import christmas.domain.discounts.SpecialDiscount;
 import christmas.domain.discounts.WeekdayDiscount;
 import christmas.domain.discounts.WeekendDiscount;
-import christmas.view.OutputView;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class DiscountService {
     private static final int MINIMUM_EVENT_PRICE = 10000;
-    private static final String NOTHING = "없음";
     private static int gift = 0;
     private final Map<Discount, Integer> discounts;
     private final PayAmount payAmount;
@@ -101,11 +97,7 @@ public class DiscountService {
         return discounts.entrySet().stream().mapToInt(discount -> discount.getValue()).sum();
     }
 
-    @Override
-    public String toString() {
-        if (discounts.size() == 0) {
-            return NOTHING;
-        }
-        return discounts.entrySet().stream().map(item -> item.getKey().toString()).collect(Collectors.joining(StringConstants.ENTER));
+    public Map<Discount, Integer> getTotalDiscounts() {
+        return discounts;
     }
 }

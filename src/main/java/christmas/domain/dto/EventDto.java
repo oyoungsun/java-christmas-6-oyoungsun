@@ -6,7 +6,7 @@ public class EventDto {
     private final String event;
 
     private EventDto(final Event event) {
-        this.event = event.toString();
+        this.event = event.getBadgyString();
     }
 
     public static EventDto fromEvent(final Event event) {

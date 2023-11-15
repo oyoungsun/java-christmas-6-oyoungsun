@@ -24,7 +24,7 @@ public class BenefitDiscount implements Discount {
     }
 
     @Override
-    public String toString() {
+    public String getDiscountString() {
         return "증정 이벤트: -" + WON_FORMAT.format(BENEIFT_DISCOUNT);
     }
 }

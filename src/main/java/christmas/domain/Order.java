@@ -2,6 +2,7 @@ package christmas.domain;
 
 import christmas.constants.StringConstants;
 import christmas.utils.validators.OrderValidator;
+import java.util.Collections;
 import java.util.List;
 
 public class Order {
@@ -20,15 +21,6 @@ public class Order {
         return orderItems.stream().mapToInt(item -> item.requestPrice()).sum();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        orderItems.stream().map(
-                item -> item.toString()).
-                forEach(item -> sb.append(item).append(StringConstants.ENTER)
-        );
-        return sb.toString();
-    }
 
     public int requestMainCount() {
         return (int) orderItems.stream().mapToInt(item -> item.requestMainCount()).sum();
@@ -36,5 +28,9 @@ public class Order {
 
     public int requestDessertCount() {
         return (int) orderItems.stream().mapToInt(item -> item.requestDessertCount()).sum();
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return Collections.unmodifiableList(orderItems);
     }
 }

@@ -26,7 +26,7 @@ public class SpecialDiscount implements Discount {
     }
 
     @Override
-    public String toString() {
+    public String getDiscountString() {
         return "특별 할인: -" + WON_FORMAT.format(SPECIAL_DISCOUNT);
     }
 

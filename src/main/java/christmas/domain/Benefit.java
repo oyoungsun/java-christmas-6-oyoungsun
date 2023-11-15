@@ -13,8 +13,7 @@ public class Benefit {
         return new Benefit(isGift);
     }
 
-    @Override
-    public String toString() {
+    public String getGiftString() {
         if(isGift){
             return GIFT;
         }

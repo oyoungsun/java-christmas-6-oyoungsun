@@ -18,8 +18,7 @@ public class PayAmount {
     public int requestTotalPayAmount(int discountAmount){
         return totalOrderAmount - discountAmount;
     }
-    @Override
-    public String toString() {
-        return WON_FORMAT.format(totalOrderAmount);
+    public int getTotalOrderAmount() {
+        return this.totalOrderAmount;
     }
 }

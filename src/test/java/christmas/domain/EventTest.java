@@ -13,7 +13,7 @@ class EventTest {
         // when
         Event event = new Event(money);
         // then
-        assertThat(event.toString()).isEqualTo("없음");
+        assertThat(event.getBadgyString()).isEqualTo("없음");
     }
 
     @ParameterizedTest
@@ -22,7 +22,7 @@ class EventTest {
         // when
         Event event = new Event(money);
         // then
-        assertThat(event.toString()).isEqualTo("별");
+        assertThat(event.getBadgyString()).isEqualTo("별");
     }
 
     @ParameterizedTest
@@ -31,7 +31,7 @@ class EventTest {
         // when
         Event event = new Event(money);
         // then
-        assertThat(event.toString()).isEqualTo("트리");
+        assertThat(event.getBadgyString()).isEqualTo("트리");
     }
 
     @ParameterizedTest
@@ -40,7 +40,7 @@ class EventTest {
         // when
         Event event = new Event(money);
         // then
-        assertThat(event.toString()).isEqualTo("산타");
+        assertThat(event.getBadgyString()).isEqualTo("산타");
     }
 
 }

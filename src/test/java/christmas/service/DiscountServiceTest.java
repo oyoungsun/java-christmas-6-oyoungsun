@@ -27,29 +27,14 @@ class DiscountServiceTest {
     }
 
     @Test
-    void 총주문금액_10000원미만시_null이_반환된다(){
+    void 총주문금액_10000원미만시_이벤트가_적용되지않는다(){
         // given
         PayAmount payAmount = new PayAmount(9999);
         Date date =  Date.from(3, new DateValidator());
         // when
         DiscountService service = DiscountService.from(payAmount, date);
         // then
-        assertNull(service);
-    }
-
-    @Test
-    void toString으로_혜택_내역을_반환한다(){
-        // given
-        DiscountService discountService = TestFactory.createDiscontService();
-        discountService.discount(0,2, true);
-        // when
-        String result = discountService.toString();
-        // then
-        assertThat(result).contains(
-                "크리스마스 디데이 할인: -1,200원",
-                "평일 할인: -4,046원",
-                "특별 할인: -1,000원",
-                "증정 이벤트: -25,000원");
+        assertThat(service.getTotalDiscounts().size()).isEqualTo(0);
     }
 
     @Test

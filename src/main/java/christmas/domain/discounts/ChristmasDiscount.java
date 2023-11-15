@@ -24,12 +24,13 @@ public class ChristmasDiscount implements Discount {
     }
 
     @Override
+    public String getDiscountString() {
+        return "크리스마스 디데이 할인: -" + WON_FORMAT.format(INITIAL_DISCOUNT + (date.getDifferent(FIRST_DAY)) * DAY_DISCOUNT);
+    }
+    @Override
     public int reqeustDiscountAmount() {
         return INITIAL_DISCOUNT + (date.getDifferent(FIRST_DAY)) * DAY_DISCOUNT;
     }
 
-    @Override
-    public String toString() {
-        return "크리스마스 디데이 할인: -" + WON_FORMAT.format(INITIAL_DISCOUNT + (date.getDifferent(FIRST_DAY)) * DAY_DISCOUNT);
-    }
+
 }

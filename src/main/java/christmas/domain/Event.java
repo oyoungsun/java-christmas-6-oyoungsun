@@ -9,8 +9,7 @@ public class Event {
         this.badgy = EventType.findEventByMoney(discountAmount);
     }
 
-    @Override
-    public String toString() {
+    public String getBadgyString() {
         return badgy;
     }
 }

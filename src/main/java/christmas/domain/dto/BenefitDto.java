@@ -7,7 +7,7 @@ public class BenefitDto {
     private final String benefit;
 
     private BenefitDto(final Benefit benefit) {
-        this.benefit = benefit.toString();
+        this.benefit = benefit.getGiftString();
     }
 
     public static BenefitDto fromBenefit(final Benefit benefit) {

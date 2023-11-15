@@ -40,8 +40,7 @@ public class OrderItem {
         return 0;
     }
 
-    @Override
-    public String toString() {
+    public String getOrderItemString() {
         return menu.getName() + StringConstants.SPACE
                 + count + "개";
     }

@@ -6,6 +6,7 @@ import christmas.domain.Event;
 import christmas.domain.Order;
 import christmas.domain.OrderItem;
 import christmas.domain.PayAmount;
+import christmas.domain.discounts.Discount;
 import christmas.domain.dto.ActualPayDto;
 import christmas.domain.dto.BenefitDto;
 import christmas.domain.dto.DiscountDto;
@@ -23,6 +24,7 @@ import christmas.utils.validators.OrderValidator;
 import christmas.view.Input;
 import christmas.view.OutputView;
 import java.util.List;
+import java.util.Map;
 
 public class EventPlannerController {
     private final Input inputView;
@@ -101,7 +103,8 @@ public class EventPlannerController {
         Benefit benefit = benefitService.getBenefit();
         discountService.discount(mainCount, dessertCount, benefit.isGift());
         OutputView.printBenefit(BenefitDto.fromBenefit(benefit));
-        OutputView.printDiscount(DiscountDto.fromDiscount(discountService));
+        Map<Discount, Integer> totalDiscount = discountService.getTotalDiscounts();
+        OutputView.printDiscount(DiscountDto.fromDiscount(totalDiscount));
     }
 
     private int sale() {
