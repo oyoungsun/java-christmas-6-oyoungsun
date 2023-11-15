@@ -8,6 +8,7 @@ import christmas.domain.PayAmount;
 import christmas.domain.discounts.SpecialDiscount;
 import christmas.domain.discounts.WeekdayDiscount;
 import christmas.domain.discounts.WeekendDiscount;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -98,6 +99,6 @@ public class DiscountService {
     }
 
     public Map<Discount, Integer> getTotalDiscounts() {
-        return discounts;
+        return Collections.unmodifiableMap(discounts);
     }
 }
