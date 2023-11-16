@@ -1,7 +1,15 @@
 package christmas;
 
+import christmas.controller.EventPlannerController;
+import christmas.utils.InputConvertor;
+import christmas.view.Input;
+import christmas.view.InputView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Input input = InputView.getInstance();
+        InputConvertor convertor = new InputConvertor();
+        EventPlannerController controller = EventPlannerController.of(input, convertor);
+        controller.run();
     }
 }
